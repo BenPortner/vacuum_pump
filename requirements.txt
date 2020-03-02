@@ -1,3 +1,6 @@
 pandas>=0.22                   # Powerful data structures for data analysis, time series, and statistics.
 pyarrow>=0.14                  # supports Apache parquet reading and writing
 pip>=9                         # The PyPA recommended tool for installing Python packages.
+sqlalchemy>=1.3		       # Package to deal with relational database the pythonic way
+psycopg2>=2.8		       # PostgreSQL database adapter for the Python programming language
+jupyterlab>=1.0		       # web-based interactive development environment for Jupyter notebooks, code, and data
