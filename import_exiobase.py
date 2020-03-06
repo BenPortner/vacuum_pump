@@ -29,6 +29,16 @@ file = pathlib.Path(converted_dir / exiobase_location_metadata["path"])
 df_exiobase_locations = load_compressed_csv_as_dataframe(file, exiobase_metadata)
 matched_locations, unmatched_locations, db_locations = db.match_exiobase_locations(df_exiobase_locations)
 
+# add unmatched locations
+for i, d in unmatched_locations.reset_index().iterrows():
+    location_data = dict(
+        identifier = d["code"],
+        label = d["name"],
+        #uri = None,
+    )
+    db.add_entry(tables.location, location_data)
+    pass
+
 # problem with 'Wallis and Futuna Is.'
 
 # find the exiobase license among existing entries in the database
@@ -62,7 +72,7 @@ for i in range(1):
         datasource = source_entry,
         datasource_id = source_entry.id,
     )
-    agent_entry = db.add_entry(tables.agent, *agent_data)
+    agent_entry = db.add_entry(tables.agent, agent_data)
     agent_entries.append(agent_entry)
 
 
